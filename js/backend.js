@@ -1,6 +1,6 @@
-localStorage.keyFNAPI = '1eea611e-bed8-4d3b-aa22-aae0b15f1c08'
-localStorage.keyFNAPIIo = '46c8d137-adea4f05-5928e673-ffdcf29d'
-localStorage.marioDancing = 'https://cdn.discordapp.com/emojis/1036788611925950504.gif?size=96&quality=lossless'
+keyFNAPI = '1eea611e-bed8-4d3b-aa22-aae0b15f1c08'
+keyFNAPIIo = '46c8d137-adea4f05-5928e673-ffdcf29d'
+marioDancing = 'https://cdn.discordapp.com/emojis/1036788611925950504.gif?size=96&quality=lossless'
 
 window.supportedLanguages = [
     'en', 'ar', 'de', 'es', 'es-419', 'fr', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'ru', 'tr', 'zh-CN', 'zh-Hant'
@@ -11,12 +11,16 @@ if (localStorage.requestLanguage === undefined) {
     if (typeof(window.navigator.language) == 'string') {
         if (window.supportedLanguages.includes(window.navigator.language)) {
             localStorage.requestLanguage = window.navigator.language;
-        } else {
+            console.log('changed language to ' + window.navigator.language);
+        } else
             localStorage.requestLanguage = window.defaultLanguage;
+        
+        if (window.navigator.language.toLowerCase() === 'es-mx') {
+            console.log(window.navigator.language + ' changed to es-419');
+            localStorage.requestLanguage = 'es-419';
         }
-    } else {
+    } else
         localStorage.requestLanguage = window.defaultLanguage;
-    }
 }
 
 function debugFetch(url, oauth) {
